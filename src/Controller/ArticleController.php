@@ -94,7 +94,7 @@ class ArticleController extends AbstractController
 
         // On retourne le rendu du formulaire dans le template s'il n'est pas soumis ou s'il n'est pas valide
         return $this->render('article/ajouter.html.twig', [
-            'form' => $form,
+            'form' => $form, // test
         ]);
     }
 
