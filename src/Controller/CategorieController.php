@@ -73,7 +73,7 @@ class CategorieController extends AbstractController
 
                 //On redirige vers la page categorie
                 return $this->redirectToRoute('app_categorie', [
-                    'id' => $categorie->getId()
+                    
                 ]);
         }
 

@@ -97,6 +97,30 @@ class ArticleController extends AbstractController
             'form' => $form,
         ]);
     }
+
+    #[Route('/article/modifier/{id}', name: 'app_article_modifier')]
+    public function update(Request $request, EntityManagerInterface $entityManager, Article $article): Response
+    {
+        //Etape 2 :Création du formulaire via la classe ArticleType
+        $form = $this->createForm(ArticleType::class, $article);
+        //Etape 3 : Traitement de la requête HTTP par le formulaire
+        $form->handleRequest($request);
+        //Etape 4 : On vérifie si le formulaire à été soumis et si il est valide !
+        if ($form->isSubmitted() && $form->isValid() ) {
+            
+            $entityManager->flush();
+
+                //On redirige vers la page avec mes article
+                return $this->redirectToRoute('app_home', [
+                    'id' => $article->getId()
+                ]);
+        }
+
+        // On retourne le rendu du formulaire dans le template s'il n'est pas soumis ou s'il n'est pas valide
+        return $this->render('article/modifier.html.twig', [
+            'form' => $form,
+        ]);
+    }
    
 
 }

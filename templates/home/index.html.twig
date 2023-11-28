@@ -17,14 +17,16 @@
                 <th>Titre</th>
                 <th>Contenu</th>
                 <th>Date de Création</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
             {% for article in articles %}               
                 <tr>
-                    <td><a href="{{ path('app_article_detail', {'id': article.id}) }}">{{ article.nom }}</a></td>
+                    <td><a class ="text-decoration-none text-dark" href="{{ path('app_article_detail', {'id': article.id}) }}">{{ article.nom }}</a></td>
                     <td>{{ article.contenu|split(' ')|slice(0, 5)|join(' ') }}</td>
                     <td>{{ article.dateDeCreation|date('Y-m-d') }}</td>
+                    <td><a class ="text-decoration-none btn btn-primary" href="{{ path('app_article_modifier', {'id': article.id}) }}">Modifier</a></td>
                 </tr>       
             {% endfor %}
         </tbody>
